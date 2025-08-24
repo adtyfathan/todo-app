@@ -13,8 +13,8 @@ class TodoRepositoryImpl(
         dao.deleteTodo(todo)
     }
 
-    override suspend fun getTodoById(id: Int): Todo? {
-        return dao.getTodoById(id)
+    override suspend fun getTodoById(id: Int?): Todo? {
+        return id?.let { dao.getTodoById(it) }
     }
 
     override fun getTodos(): Flow<List<Todo>> {
